@@ -26,6 +26,7 @@ END:VCARD"""
 #inputs
 name = st.text_input("Ad", key="name")
 last_name = st.text_input("Soyad", key="last_name")
+title = st.text_input("Ünvan", key="title")
 e_mail = st.text_input("E-posta adresi", key="email")
 e_mail2 = st.text_input("E-posta adresi2", key="email2")
 tel = st.text_input("Telefon", key="tel")
@@ -45,9 +46,9 @@ data = {
     "home_address": home_address,
     "work_address": work_address,
     "organisation": organisation,
-    "website": website
+    "website": website,
+    "title": title
 }
-
 
 # Create the vCard
     
