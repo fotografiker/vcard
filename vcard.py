@@ -57,7 +57,7 @@ def generate_qr_code(data):
 
 
 # Add a "Generate QR Code" button
-if st.button("Generate QR Code"):
+if st.button("Dijital Kartvizit Oluşturun"):
     # Create the data dictionary
     data = {
         "name": name,
@@ -82,7 +82,7 @@ if st.button("Generate QR Code"):
     img.save(img_bytes, format='PNG')
     # Add a download button for the image
     st.download_button(
-        label="Download QR Code",
+        label=" ⬇️ VR Kodunu İndirin",
         data=img_bytes.getvalue(),
         file_name="qrcode.png",
         mime="image/png"
