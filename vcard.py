@@ -33,7 +33,17 @@ mobile = st.text_input("Mobil Telefon", key="mobile")
 home_address = st.text_input("Ev adresi", key="home_address")
 work_address = st.text_input("İş adresi", key="work_address")
 
-data = [name,last_name,e_mail,e_mail2,tel,mobile]
+data = {
+    "name": name,
+    "last_name": last_name,
+    "email": e_mail,
+    "email2": e_mail2,
+    "tel": tel,
+    "mobile": mobile,
+    "home_address": home_address,
+    "work_address": work_address}
+
+# Create the vCardname,last_name,e_mail,e_mail2,tel,mobile]
 
 # Create the vcard]
 # Format the vCard text with the variables from the data dictionary
