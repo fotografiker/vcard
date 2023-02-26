@@ -2,7 +2,7 @@ import streamlit as st
 import qrcode
 from unidecode import unidecode
 from PIL import Image
-import base64
+
 import io
 
 
