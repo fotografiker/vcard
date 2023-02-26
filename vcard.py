@@ -29,7 +29,7 @@ last_name = st.text_input("Soyad", key="last_name")
 e_mail = st.text_input("E-posta adresi", key="email")
 e_mail2 = st.text_input("E-posta adresi2", key="email2")
 tel = st.text_input("Telefon", key="tel")
-mobile = st.text_input("E-posta adresi", key="email")
+mobile = st.text_input("Mobil Telefon", key="mobile")
 home_address = st.text_input("Ev adresi", key="home_address")
 work_address = st.text_input("İş adresi", key="work_address")
 
