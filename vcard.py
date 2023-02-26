@@ -2,6 +2,9 @@ import streamlit as st
 import qrcode
 from unidecode import unidecode
 from PIL import Image
+import base64
+from io import BytesIO
+
 
 #import base64
 
@@ -42,9 +45,17 @@ def generate_qr_code(data):
     # Format the vCard text with the variables from the data dictionary
     vcard_text = vcard_template.format(**data)
     # Create the QR code image
-    img = qrcode.make(vcard_text, box_size=10)
-    # Return the QR code image
-    return img
+   # Create the QR code image as a Pillow Image object
+    qr_img = qrcode.make(vcard_text, box_size=10)
+    pil_img = Image.fromarray(qr_img)
+
+    # Save the Pillow Image object to a byte buffer
+    buffer = BytesIO()
+    pil_img.save(buffer, format="PNG")
+
+    # Convert the byte buffer to a base64-encoded string
+    img_str = base64.b64encode(buffer.getvalue()).decode()
+    return img_str
 
 # Add a "Generate QR Code" button
 if st.button("Generate QR Code"):
