@@ -37,34 +37,35 @@ work_address = st.text_input("İş adresi", key="work_address")
 organisation = st.text_input("İşyeri Adı", key="organisation")
 website = st.text_input("Websitesi", key="website")
 
-data = {
-    "name": name,
-    "last_name": last_name,
-    "email": e_mail,
-    "email2": e_mail2,
-    "tel": tel,
-    "mobile": mobile,
-    "home_address": home_address,
-    "work_address": work_address,
-    "organisation": organisation,
-    "website": website,
-    "title": title
-}
+# Define a function to generate the QR code image
+def generate_qr_code(data):
+    # Format the vCard text with the variables from the data dictionary
+    vcard_text = vcard_template.format(**data)
+    # Create the QR code image
+    img = qrcode.make(vcard_text, box_size=10)
+    # Return the QR code image
+    return img
 
-# Create the vCard
-    
-# Format the vCard text with the variables from the data dictionary
-vcard_text = vcard_template.format(**data)
-
-# Create the QR code image
-img = qrcode.make(vcard_text, box_size=10)
-
-if img is not None:
-    file_details = {"Filename":img.name,"FileType":img.type,"FileSize":img.size}
-    st.write(file_details)
-    image = Image.open(img)
-    st.text("Original Image")
-    st.image(img,use_column_width=True)
+# Add a "Generate QR Code" button
+if st.button("Generate QR Code"):
+    # Create the data dictionary
+    data = {
+        "name": name,
+        "last_name": last_name,
+        "email": e_mail,
+        "email2": e_mail2,
+        "tel": tel,
+        "mobile": mobile,
+        "home_address": home_address,
+        "work_address": work_address,
+        "organisation": organisation,
+        "website": website,
+        "title": title
+    }
+    # Generate the QR code image
+    img = generate_qr_code(data)
+    # Display the QR code image
+    st.image(img)
 # Convert the name to Latin characters using the unidecode function
 file_name = unidecode(name)
 
