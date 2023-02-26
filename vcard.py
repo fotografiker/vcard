@@ -3,7 +3,7 @@ import qrcode
 from unidecode import unidecode
 from PIL import Image
 import base64
-from io import BytesIO
+import io
 
 
 
