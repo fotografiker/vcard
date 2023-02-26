@@ -58,7 +58,7 @@ vcard_text = vcard_template.format(**data)
 # Create the QR code image
 img = qrcode.make(vcard_text, box_size=10)
 
-st.image(img)
+img
 # Convert the name to Latin characters using the unidecode function
 file_name = unidecode(name)
 
