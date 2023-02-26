@@ -83,3 +83,4 @@ wcwidth==0.2.5
 websockets==10.4
 zipp==3.11.0
 qrcode
+unidecode
