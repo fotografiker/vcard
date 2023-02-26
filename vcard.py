@@ -6,25 +6,7 @@ import base64
 from io import BytesIO
 
 
-#import base64
 
-
-
-# Create the vCard text as a string
-vcard_template = """BEGIN:VCARD;CHARSET=iso-8859-1
-VERSION:4.0
-N:{last_name};{name}
-FN:{name} {last_name}
-ORG:{organisation}
-TITLE: {title}
-EMAIL;PREF=1;TYPE=INTERNET:{email}
-EMAIL:{email2}
-TEL;TYPE#work,voice;VALUE#uri:tel:{tel}
-TEL;TYPE#mobile,voice;VALUE#uri:tel:{mobile}
-ADR;TYPE#WORK;PREF#1: {work_address}
-ADR;TYPE#HOME: {home_address}
-URL:{website}
-END:VCARD"""
 
 
 #inputs
@@ -40,22 +22,39 @@ work_address = st.text_input("İş adresi", key="work_address")
 organisation = st.text_input("İşyeri Adı", key="organisation")
 website = st.text_input("Websitesi", key="website")
 
-# Define a function to generate the QR code image
 def generate_qr_code(data):
+    # Create the vCard text as a string
+    vcard_template = """BEGIN:VCARD;CHARSET=iso-8859-1
+    VERSION:4.0
+    N:{last_name};{name}
+    FN:{name} {last_name}
+    ORG:{organisation}
+    TITLE: {title}
+    EMAIL;PREF=1;TYPE=INTERNET:{email}
+    EMAIL:{email2}
+    TEL;TYPE#work,voice;VALUE#uri:tel:{tel}
+    TEL;TYPE#mobile,voice;VALUE#uri:tel:{mobile}
+    ADR;TYPE#WORK;PREF#1: {work_address}
+    ADR;TYPE#HOME: {home_address}
+    URL:{website}
+    END:VCARD"""
+
     # Format the vCard text with the variables from the data dictionary
     vcard_text = vcard_template.format(**data)
+
     # Create the QR code image
-   # Create the QR code image as a Pillow Image object
     qr_img = qrcode.make(vcard_text, box_size=10)
-    pil_img = Image.fromarray(qr_img)
 
-    # Save the Pillow Image object to a byte buffer
-    buffer = BytesIO()
-    pil_img.save(buffer, format="PNG")
+    # Convert the QR code image to a bytes-like object
+    img_bytes = io.BytesIO()
+    qr_img.save(img_bytes, format='PNG')
+    img_bytes.seek(0)
 
-    # Convert the byte buffer to a base64-encoded string
-    img_str = base64.b64encode(buffer.getvalue()).decode()
-    return img_str
+    # Create the PIL Image object
+    pil_img = Image.open(img_bytes)
+
+    return pil_img
+
 
 # Add a "Generate QR Code" button
 if st.button("Generate QR Code"):
