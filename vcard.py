@@ -76,6 +76,12 @@ if st.button("Generate QR Code"):
     img = generate_qr_code(data)
     # Display the QR code image
     st.image(img)
+    st.download_button(
+    label="Download QR code",
+    data=img,
+    file_name='qr_code.png',
+    mime='image/png'
+)
 # Convert the name to Latin characters using the unidecode function
 file_name = unidecode(name)
 
