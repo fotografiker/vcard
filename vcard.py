@@ -22,6 +22,7 @@ ADR;TYPE#HOME: {home_address}
 URL:{website}
 END:VCARD"""
 
+
 #inputs
 name = st.text_input("Ad", key="name")
 last_name = st.text_input("Soyad", key="last_name")
