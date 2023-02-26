@@ -77,13 +77,14 @@ if st.button("Generate QR Code"):
     # Display the QR code image
     st.image(img)
     
-    # Add a download button for the QR code image
-    download_button_str = f"Download QR Code as PNG"
-    download_filename_str = f"{name}_{last_name}_QR_Code.png"
+    # Convert the image to bytes
+    img_bytes = io.BytesIO()
+    img.save(img_bytes, format='PNG')
+    # Add a download button for the image
     st.download_button(
-        label=download_button_str,
-        data=img,
-        file_name=download_filename_str,
+        label="Download QR Code",
+        data=img_bytes.getvalue(),
+        file_name="qrcode.png",
         mime="image/png"
     )
 
