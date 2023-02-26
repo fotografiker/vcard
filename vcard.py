@@ -1,6 +1,7 @@
 import streamlit as st
 import qrcode
 from unidecode import unidecode
+from PIL import Image
 
 #import base64
 
@@ -58,7 +59,8 @@ vcard_text = vcard_template.format(**data)
 # Create the QR code image
 img = qrcode.make(vcard_text, box_size=10)
 
-img
+image = image = Image.open(img)
+st.image(image, use_column_width = True)
 # Convert the name to Latin characters using the unidecode function
 file_name = unidecode(name)
 
